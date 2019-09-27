@@ -31,5 +31,10 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(sub,3.96)
         self.assertEqual(dis,0.99)
         self.assertEqual(total,2.97)
+    def test_percentDiscount(self):
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Sardines":offers.percent(percent=25)}, items = {"Sardines":2})
+        self.assertEqual(sub,3.78)
+        self.assertEqual(dis,0.94)
+        self.assertEqual(total,2.84)
 if __name__ == '__main__':
     unittest.main()

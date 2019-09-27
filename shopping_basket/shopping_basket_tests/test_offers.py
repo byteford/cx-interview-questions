@@ -22,5 +22,9 @@ class TestOffers(unittest.TestCase):
         cheap = offers.buyxGetCheap(amount=3)
         cat = {"Shampoo (Small)": 2.00, "Shampoo (Medium)": 2.50, "Shampoo (Large)": 3.50}
         self.assertEqual(cheap.discount(catalog=cat,items={"Shampoo (Large)":3, "Shampoo (Medium)":2,"Shampoo (Small)":1}),5.50)
+    def test_xgetCheapmultirev(self):
+        cheap = offers.buyxGetCheap(amount=3)
+        cat = {"Shampoo (Small)": 2.00, "Shampoo (Medium)": 2.50, "Shampoo (Large)": 3.50}
+        self.assertEqual(cheap.discount(catalog=cat,items={"Shampoo (Small)":1, "Shampoo (Medium)":2,"Shampoo (Large)":3}),5.50)
 if __name__ == '__main__':
     unittest.main()

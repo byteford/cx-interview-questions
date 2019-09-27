@@ -4,7 +4,7 @@ class basket():
     _offers = {}
     #update stored catalog and/ or offers
     #catalog    : Dict[string, float] (name, cost)
-	#offers 	: Dict[string, offer] (name, offer object)
+	#offers 	: Dict[string, offer] (name, list[offer object])
     def update(self, catalog = None, offers = None):
         if catalog != None:
             self._catalog = catalog
@@ -30,7 +30,7 @@ class basket():
         pass
     # calculates the value
     #catalog    : Dict[string, float] (name, cost)
-	#offers 	: Dict[string, offer] (name, offer object)
+	#offers 	: Dict[string, offer] (name, list[offer object])
 	#items 	    : Dict[string,int] (name, amount)
 	#returns subtotal, discount, total : float
     # can also replace any stored values (DOES NOT ADD TO)
@@ -91,7 +91,7 @@ class basket():
         return subTotal
     #Calculates how much discount to give based only on sigle product offers	
     #catalog    : Dict[string, float] (name, cost)
-	#offers 	: Dict[string, offer] (name, offer object)
+	#offers 	: Dict[string, offer] (name, list[offer object])
 	#items 	    : Dict[string,int] (name, amount)
 	#returns discount: float
     def calcSingleOffers(self, catalog, offers, items):
@@ -101,8 +101,15 @@ class basket():
                 for off in offers[key]:
                     discount += off.discount(amount=value,cost=catalog[key])
         return discount
+    #calcMultiOffers(catalog,offers,items)
+	#catalog : Dict[string, float] (name, cost)
+	#offers 	: Dict[string, offer] (name, list[offer object])
+	#items 	: Dict[string,int] (name, amount)
+	#returns discount: float
+	#Calculates how much discount to give based only on multi product offers	
     def calcMultiOffers(self,catalog,offers,items):
         discount = 0
-        for off in offers["multi"]:
-            discount += off.discount(catalog=catalog,items=items)
+        if "multi" in offers:
+            for off in offers["multi"]:
+                discount += off.discount(catalog=catalog,items=items)
         return discount

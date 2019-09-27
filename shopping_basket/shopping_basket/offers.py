@@ -53,10 +53,13 @@ class percent(offer):
 class buyxGetCheap(offer):
     _amount = 0
     #kwarfgs = amount:int
+	#amount if how many to get one free
     def __init__(self, **kwargs):
         self._amount = kwargs["amount"]
         self._multi = True
-    
+    #works out whats the most amount of money the could be saved
+    #kwargs = (catalog:Dict[string, float] (name, cost),items:Dict[string,int] (name, amount)) 
+	#returns a float
     def discount(self,**kwargs):
         arr = []
         discount = 0

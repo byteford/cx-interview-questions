@@ -4,7 +4,10 @@ class basket():
     _offers = {}
     #update stored catalog and/ or offers
     def update(self, catalog = None, offers = None):
-        pass
+        if catalog != None:
+            self._catalog = catalog
+        if offers != None:
+            self._offers = offers
     #clear any stored items in the basket
     def clearBasket(self):
         pass
@@ -18,12 +21,31 @@ class basket():
     # SubTotal, Discount, Total
     # can also replace any stored values (DOES NOT ADD TO)
     def calc(self, catalog=None, offers=None, items = None):
-        if items == None and not self._items:
-            return 0, 0, 0
-        if(catalog == None and not self._catalog):
+        #inits variables
+        subTotal= discount= total = 0
+        if catalog == None and not self._catalog:
+            #is there a catalog passed or loaded
             print()
             print("==================================")
             print("========ERROR NEED CATALOG========")
             print("==================================")
-            return 0,0,0
-        pass
+            return subTotal, discount, total
+        elif catalog != None:
+            #updates the catalog if one has been passed
+            self.update(catalog = catalog)
+        if items == None and not self._items:
+            #if no items have been passed return 0
+            return subTotal, discount, total
+        
+        subTotal = self.calSubTotal(catalog,items)
+        
+        if offers== None and not self._offers:
+            pass
+        total = subTotal - discount
+        return subTotal, discount, total
+
+    def calSubTotal(self,catalog, items):
+        subTotal = 0
+        for key, value in items.items():
+            subTotal += self._catalog[key] * value
+        return subTotal

@@ -10,12 +10,19 @@ class basket():
             self._offers = offers
     #clear any stored items in the basket
     def clearBasket(self):
+        self._items = {}
         pass
     #add an item of any quantity
     def addItem(self, name, amount = 1):
+        if( name in self._items):
+            self._items[name] += amount
+        else:
+            self._items[name] = amount
         pass
     #add a Dict of items to the existing basket
     def addItems(self, items):
+        for name,amount in items.items():
+            self.addItem(name,amount)
         pass
     # calculates the value, returns:
     # SubTotal, Discount, Total
@@ -38,11 +45,13 @@ class basket():
         if items == None and not self._items:
             #if no items have been passed return 0
             return subTotal, discount, total
-        subTotal = self.calSubTotal(self._catalog,items)
+        if items != None:
+            self._items = items
+        subTotal = self.calSubTotal(self._catalog,self._items)
         if subTotal < 0:
             return 0,0,0
         if self._offers:
-            discount = self.calSingleOffers(self._catalog,self._offers,items)
+            discount = self.calcSingleOffers(self._catalog,self._offers,self._items)
         
         total = subTotal - discount
         return subTotal, round(discount,2), round(total,2)
@@ -70,7 +79,7 @@ class basket():
                     return 0
                 subTotal += catalog[key] * value
         return subTotal
-    def calSingleOffers(self, catalog, offers, items):
+    def calcSingleOffers(self, catalog, offers, items):
         discount = 0
         for key, value in items.items():
             if key in offers:

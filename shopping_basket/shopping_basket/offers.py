@@ -32,4 +32,7 @@ class percent(offer):
         self._percent = kwargs["percent"]
         self._multi = False
     def discount(self, **kwargs):
-        return 0
+        amount = kwargs["amount"]
+        cost = kwargs["cost"]
+        saving = cost * (self._percent /100)
+        return round(saving*amount,2)

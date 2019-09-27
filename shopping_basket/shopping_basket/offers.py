@@ -48,3 +48,12 @@ class percent(offer):
         cost = kwargs["cost"]
         saving = cost * (self._percent /100)
         return round(saving*amount,2)
+
+class buyxGetCheap(offer):
+    _amount = 0
+    #kwarfgs = amount:int
+    def __init__(self, **kwargs):
+        self._amount = kwargs["amount"]
+    
+    def discount(self,**kwargs):
+        pass

@@ -25,3 +25,11 @@ class xfory(offer):
         dif = (self._x-self._y)
         saving = amount / self._x
         return round(int(saving) *(cost*dif),2)
+
+class percent(offer):
+    _percent = 0
+    def __init__(self, **kwargs):
+        self._percent = kwargs["percent"]
+        self._multi = False
+    def discount(self, **kwargs):
+        return 0

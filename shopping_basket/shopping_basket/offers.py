@@ -56,4 +56,18 @@ class buyxGetCheap(offer):
         self._amount = kwargs["amount"]
     
     def discount(self,**kwargs):
-        pass
+        arr = []
+        discount = 0
+        cat = kwargs["catalog"]
+        items= kwargs["items"]
+        totalAmount = sum(items.values())
+        if(totalAmount< self._amount):
+            return 0
+        amountFree = int(totalAmount/self._amount)
+        for key, value in items.items():
+            for i in range(value):
+                arr.append(key)
+        print(arr)
+        for i in range(amountFree):
+            discount += cat[arr[i*self._amount+self._amount-1]]
+        return discount

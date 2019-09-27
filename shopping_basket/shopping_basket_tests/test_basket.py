@@ -37,7 +37,7 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(dis,0.94)
         self.assertEqual(total,2.84)
     def test_negPrice(self):
-        sub,dis,total = self._bask.calc(catalog = {"Baked Beans", -1}, items = {"Baked Beans":4})
+        sub,dis,total = self._bask.calc(catalog = {"Baked Beans": -1}, items = {"Baked Beans":4})
         self.assertEqual(sub,0)
         self.assertEqual(dis,0)
         self.assertEqual(total,0)

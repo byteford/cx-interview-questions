@@ -38,8 +38,9 @@ class basket():
         if items == None and not self._items:
             #if no items have been passed return 0
             return subTotal, discount, total
-        subTotal = self.calSubTotal(catalog,items)
-
+        subTotal = self.calSubTotal(self._catalog,items)
+        if subTotal < 0:
+            return 0,0,0
         if self._offers:
             discount = self.calSingleOffers(self._catalog,self._offers,items)
         
@@ -49,7 +50,19 @@ class basket():
     def calSubTotal(self,catalog, items):
         subTotal = 0
         for key, value in items.items():
-            subTotal += self._catalog[key] * value
+            if catalog[key] < 0:
+                print()
+                print("==================================")
+                print("=====PRICE CANNOT BE NEGITIVE=====")
+                print("==================================")
+                return 0
+            if value < 0:
+                print()
+                print("==================================")
+                print("=====AMOUNT CANNOT BE NEGITIVE====")
+                print("==================================")
+                return 0
+            subTotal += catalog[key] * value
         return subTotal
     def calSingleOffers(self, catalog, offers, items):
         discount = 0

@@ -98,6 +98,8 @@ class basket():
         discount = 0
         for key, value in items.items():
             if key in offers:
-                offer = offers[key]
-                discount += offer.discount(amount=value,cost=catalog[key])
+                for off in offers[key]:
+                    discount += off.discount(amount=value,cost=catalog[key])
         return discount
+    def calcMultiOffers(self,catalog,offers,items):
+        pass

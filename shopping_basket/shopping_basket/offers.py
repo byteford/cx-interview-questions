@@ -18,5 +18,10 @@ class xfory(offer):
         self._x = kwargs["x"]
         self._y = kwargs["y"]
         self._multi = False
+    #kwargs are amount, cost
     def discount(self, **kwargs):
-        pass
+        amount = kwargs["amount"]
+        cost = kwargs["cost"]
+        dif = (self._x-self._y)
+        saving = amount / self._x
+        return round(int(saving) *(cost*dif),2)

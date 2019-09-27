@@ -33,14 +33,16 @@ class basket():
         elif catalog != None:
             #updates the catalog if one has been passed
             self.update(catalog = catalog)
+        if offers != None:
+            self.update(offers = offers)
         if items == None and not self._items:
             #if no items have been passed return 0
             return subTotal, discount, total
-        
         subTotal = self.calSubTotal(catalog,items)
+
+        if self._offers:
+            discount = self.calSingleOffers(self._catalog,self._offers,items)
         
-        if offers== None and not self._offers:
-            pass
         total = subTotal - discount
         return subTotal, discount, total
 
@@ -49,3 +51,10 @@ class basket():
         for key, value in items.items():
             subTotal += self._catalog[key] * value
         return subTotal
+    def calSingleOffers(self, catalog, offers, items):
+        discount = 0
+        for key, value in items.items():
+            if key in offers:
+                offer = offers[key]
+                discount += offer.discount(amount=value,cost=catalog[key])
+        return discount

@@ -59,7 +59,7 @@ class basket():
             return 0,0,0
         if self._offers:
             discount = self.calcSingleOffers(self._catalog,self._offers,self._items)
-        
+            discount += self.calcMultiOffers(self._catalog,self._offers,self._items)
         total = subTotal - discount
         return subTotal, round(discount,2), round(total,2)
     #calculates a subtotal from a catalog and list of items
@@ -102,4 +102,7 @@ class basket():
                     discount += off.discount(amount=value,cost=catalog[key])
         return discount
     def calcMultiOffers(self,catalog,offers,items):
-        pass
+        discount = 0
+        for off in offers["multi"]:
+            discount += off.discount(catalog=catalog,items=items)
+        return discount

@@ -74,7 +74,7 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(dis,0)
         self.assertEqual(total,0)
     def test_xcheapDiscount(self):
-        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"multi":offers.buyxGetCheap(amount=3)},items={"Shampoo (Small)":1, "Shampoo (Medium)":2,"Shampoo (Large)":3})
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"multi":[offers.buyxGetCheap(amount=3)]},items={"Shampoo (Small)":2, "Shampoo (Medium)":1,"Shampoo (Large)":3})
         self.assertEqual(sub,17)
         self.assertEqual(dis,5.5)
         self.assertEqual(total,11.5)

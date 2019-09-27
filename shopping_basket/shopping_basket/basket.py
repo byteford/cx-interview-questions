@@ -1,4 +1,7 @@
 class basket():
+    _items = {}
+    _catalog = {}
+    _offers = {}
     #update stored catalog and/ or offers
     def update(self, catalog = None, offers = None):
         pass
@@ -15,4 +18,6 @@ class basket():
     # SubTotal, Discount, Total
     # can also replace any stored values (DOES NOT ADD TO)
     def calc(self, catalog=None, offers=None, items = None):
+        if items == None and not self._items:
+            return 0
         pass

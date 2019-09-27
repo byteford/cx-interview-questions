@@ -10,7 +10,8 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(dis,0)
         self.assertEqual(total,0)
     def test_catNone(self):
-        sub,dis,total = self._bask.calc(items = {"Baked Beans":4})
+        _bask= basket.basket()
+        sub,dis,total = _bask.calc(items = {"Baked Beans":4})
         self.assertEqual(sub,0)
         self.assertEqual(dis,0)
         self.assertEqual(total,0)

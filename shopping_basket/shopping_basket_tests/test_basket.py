@@ -27,12 +27,12 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(dis,0)
         self.assertEqual(total,5.16)
     def test_xforyDiscount(self):
-        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Baked Beans":offers.xfory(x=3,y=2)}, items = {"Baked Beans":4})
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Baked Beans":[offers.xfory(x=3,y=2)]}, items = {"Baked Beans":4})
         self.assertEqual(sub,3.96)
         self.assertEqual(dis,0.99)
         self.assertEqual(total,2.97)
     def test_percentDiscount(self):
-        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Sardines":offers.percent(percent=25)}, items = {"Sardines":2})
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Sardines":[offers.percent(percent=25)]}, items = {"Sardines":2})
         self.assertEqual(sub,3.78)
         self.assertEqual(dis,0.94)
         self.assertEqual(total,2.84)
@@ -73,5 +73,10 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(sub,0)
         self.assertEqual(dis,0)
         self.assertEqual(total,0)
+    def test_xcheapDiscount(self):
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"multi":offers.buyxGetCheap(amount=3)},items={"Shampoo (Small)":1, "Shampoo (Medium)":2,"Shampoo (Large)":3})
+        self.assertEqual(sub,17)
+        self.assertEqual(dis,5.5)
+        self.assertEqual(total,11.5)
 if __name__ == '__main__':
     unittest.main()

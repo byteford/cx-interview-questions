@@ -55,6 +55,7 @@ class buyxGetCheap(offer):
     #kwarfgs = amount:int
     def __init__(self, **kwargs):
         self._amount = kwargs["amount"]
+        self._multi = True
     
     def discount(self,**kwargs):
         arr = []

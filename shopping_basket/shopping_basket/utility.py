@@ -27,7 +27,6 @@ def sortItems(catalog, items):
             items[k] = R[j]
             j+=1
             k+=1
-    print(items)
     return items
 def DicToList(items):
     arr=[]

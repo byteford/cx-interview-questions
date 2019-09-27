@@ -36,5 +36,20 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(sub,3.78)
         self.assertEqual(dis,0.94)
         self.assertEqual(total,2.84)
+    def test_negPrice(self):
+        sub,dis,total = self._bask.calc(catalog = {"Baked Beans", -1}, items = {"Baked Beans":4})
+        self.assertEqual(sub,0)
+        self.assertEqual(dis,0)
+        self.assertEqual(total,0)
+    def test_negAmount(self):
+        sub,dis,total = self._bask.calc(catalog = self._cat, items = {"Baked Beans":-4})
+        self.assertEqual(sub,0)
+        self.assertEqual(dis,0)
+        self.assertEqual(total,0)
+    def test_notInCat(self):
+        sub,dis,total = self._bask.calc(catalog = self._cat, items = {"Baked":4})
+        self.assertEqual(sub,0)
+        self.assertEqual(dis,0)
+        self.assertEqual(total,0)
 if __name__ == '__main__':
     unittest.main()

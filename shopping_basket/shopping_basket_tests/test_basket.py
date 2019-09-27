@@ -1,6 +1,6 @@
 import unittest
 from shopping_basket import basket
-
+from shopping_basket import offers
 class TestBasket(unittest.TestCase):
     _bask = basket.basket()
     _cat = {"Baked Beans": 0.99,"Biscuits": 1.20, "Sardines": 1.89, "Shampoo (Small)": 2.00, "Shampoo (Medium)": 2.50, "Shampoo (Large)": 3.50}
@@ -24,6 +24,11 @@ class TestBasket(unittest.TestCase):
         sub,dis,total = self._bask.calc(catalog = self._cat, items = {"Baked Beans":4, "Biscuits": 1})
         self.assertEqual(sub,5.16)
         self.assertEqual(dis,0)
+        self.assertEqual(total,5.16)
+    def test_xforyDiscount(self):
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Baked Beans",offers.offer(x=3,y=2)}, items = {"Baked Beans":4})
+        self.assertEqual(sub,3.96)
+        self.assertEqual(dis,0.99)
         self.assertEqual(total,5.16)
 if __name__ == '__main__':
     unittest.main()

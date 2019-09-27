@@ -1,3 +1,4 @@
+from . import utility
 #To be implemented by other offers to add diffrent funcionality with each offer 
 class offer():
     _multi = False
@@ -64,10 +65,7 @@ class buyxGetCheap(offer):
         if(totalAmount< self._amount):
             return 0
         amountFree = int(totalAmount/self._amount)
-        for key, value in items.items():
-            for i in range(value):
-                arr.append(key)
-        print(arr)
+        arr = utility.sortItems(cat, utility.DicToList(items))
         for i in range(amountFree):
             discount += cat[arr[i*self._amount+self._amount-1]]
         return discount

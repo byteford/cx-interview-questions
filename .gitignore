@@ -198,3 +198,4 @@ fabric.properties
 *.iml
 *.idea
 Pipfile.lock
+.vscode/

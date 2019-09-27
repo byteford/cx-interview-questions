@@ -44,7 +44,7 @@ class basket():
             discount = self.calSingleOffers(self._catalog,self._offers,items)
         
         total = subTotal - discount
-        return subTotal, discount, total
+        return subTotal, round(discount,2), round(total,2)
 
     def calSubTotal(self,catalog, items):
         subTotal = 0

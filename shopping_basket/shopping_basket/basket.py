@@ -19,5 +19,11 @@ class basket():
     # can also replace any stored values (DOES NOT ADD TO)
     def calc(self, catalog=None, offers=None, items = None):
         if items == None and not self._items:
-            return 0
+            return 0, 0, 0
+        if(catalog == None and not self._catalog):
+            print()
+            print("==================================")
+            print("========ERROR NEED CATALOG========")
+            print("==================================")
+            return 0,0,0
         pass

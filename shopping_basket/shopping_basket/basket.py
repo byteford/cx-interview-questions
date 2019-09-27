@@ -50,19 +50,25 @@ class basket():
     def calSubTotal(self,catalog, items):
         subTotal = 0
         for key, value in items.items():
-            if catalog[key] < 0:
+            if not key in catalog:
                 print()
                 print("==================================")
-                print("=====PRICE CANNOT BE NEGITIVE=====")
+                print("=====No Item ",key,"=====")
                 print("==================================")
-                return 0
-            if value < 0:
-                print()
-                print("==================================")
-                print("=====AMOUNT CANNOT BE NEGITIVE====")
-                print("==================================")
-                return 0
-            subTotal += catalog[key] * value
+            else:
+                if catalog[key] < 0:
+                    print()
+                    print("==================================")
+                    print("=====PRICE CANNOT BE NEGITIVE=====")
+                    print("==================================")
+                    return 0
+                if value < 0:
+                    print()
+                    print("==================================")
+                    print("=====AMOUNT CANNOT BE NEGITIVE====")
+                    print("==================================")
+                    return 0
+                subTotal += catalog[key] * value
         return subTotal
     def calSingleOffers(self, catalog, offers, items):
         discount = 0

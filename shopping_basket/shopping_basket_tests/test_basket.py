@@ -26,7 +26,7 @@ class TestBasket(unittest.TestCase):
         self.assertEqual(dis,0)
         self.assertEqual(total,5.16)
     def test_xforyDiscount(self):
-        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Baked Beans",offers.offer(x=3,y=2)}, items = {"Baked Beans":4})
+        sub,dis,total = self._bask.calc(catalog = self._cat,offers={"Baked Beans":offers.offer(x=3,y=2)}, items = {"Baked Beans":4})
         self.assertEqual(sub,3.96)
         self.assertEqual(dis,0.99)
         self.assertEqual(total,5.16)

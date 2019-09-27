@@ -2,8 +2,6 @@
 
 To just run the code please use the unittests in the "shopping_basket_tests" folder
 
-some tests give False negitives if all the tests are ran at the same time
-
 There is 3 files of tests "test_basket" tests the overall functionaly of the project, "test_offers" tests the logic of each offer and "test_utility" that tests 2 utility functions I made 
 
 Please see below for infomation on how to run the functions provided. 

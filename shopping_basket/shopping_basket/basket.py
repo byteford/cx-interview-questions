@@ -1,7 +1,8 @@
 class basket():
-    _items = {}
-    _catalog = {}
-    _offers = {}
+    def __init__(self):
+        self._items = {}
+        self._catalog = {}
+        self._offers = {}
     #update stored catalog and/ or offers
     #catalog    : Dict[string, float] (name, cost)
 	#offers 	: Dict[string, offer] (name, list[offer object])
